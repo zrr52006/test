@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../lib/vue.min.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        
+        <p>{{msg| msgFormat}}</p>
+        <h4>带有参数的过滤器呀呀呀呀</h4>
+        <p>{{msg| msgFormat1('大肉大肉')}}</p>
+
+        <h4>带有 多个 参数的过滤器呀呀呀呀</h4>
+        <p>{{msg| msgFormat2('大肉大肉','真香真香')}}</p>
+    </div>
+    <script>
+        Vue.filter('msgFormat',function(msg){
+            // return msg.replace("风","大雪")
+            return msg.replace(/风/g,"大雪")
+        });
+        
+        Vue.filter('msgFormat1',function(msg,arg){
+            return msg.replace(/风/g,arg)
+        })
+
+        Vue.filter('msgFormat2',function(msg,arg,argg){
+            return msg.replace(/风/g,arg+argg)
+        })
+
+        Vue.filter('test',function(msg){
+            return msg+"====="
+        })
+
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                msg:"祝你一路顺风，我听见风来自地铁和人海，顺风！"
+            },
+            method:{}
+        })
+    </script>
+</body>
+</html>
